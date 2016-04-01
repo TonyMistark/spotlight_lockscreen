@@ -1,0 +1,13 @@
+*.zip
+*.rar
+*.via
+*.tmp
+*.err
+*.pyc
+*.swp
+*#
+.DS_Store
+.svn
+env
+TAGS
+.idea/
