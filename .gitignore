@@ -4,7 +4,9 @@
 *.tmp
 *.err
 *.pyc
+*.py~
 *.swp
+*.ignore~
 *#
 .DS_Store
 .svn
