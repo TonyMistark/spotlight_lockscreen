@@ -3,6 +3,9 @@
 
 import struct
 
+class NotImageFileException(Exception):
+	pass
+
 class ImageFileTypeChecker(object):
     @classmethod
     def check(cls, img_file):
@@ -18,7 +21,7 @@ class ImageFileTypeChecker(object):
         return cls.EXT
 
 
-class JPGChecker(object):
+class JPGChecker(ImageFileTypeChecker):
     HEAD = '\xff\xd8\xff\xe1'
     EXT = 'jpg'
 
@@ -39,7 +42,7 @@ class JPGChecker(object):
         return height, width
 
 
-class PNGChecker(object):
+class PNGChecker(ImageFileTypeChecker):
     HEAD = '\x89PNG'
     EXT = 'png'
 
@@ -55,5 +58,5 @@ def get_checker(image_file):
         if checker.check(image_file):
             return checker
     else:
-        raise Exception("Not a image file")
+        raise NotImageFileException
 

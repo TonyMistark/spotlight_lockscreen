@@ -5,7 +5,7 @@ from os.path import join
 import shutil
 from comm_def import ASSET_DIR
 from custom import imgs_dir
-from image_checker import get_checker
+from image_checker import get_checker, NotImageFileException
 
 
 def start_run():
@@ -15,7 +15,11 @@ def copy_images(asset_dir):
     for file_name in os.listdir(asset_dir):
         full_file_name = join(asset_dir, file_name)
         with open(full_file_name, 'rb') as f:
-            checker = get_checker(f)
+            try:
+                checker = get_checker(f)
+            except NotImageFileException:
+                continue
+
             ext = checker.get_ext()
             height, width = checker.get_size(f)
             if not os.path.exists(imgs_dir):
